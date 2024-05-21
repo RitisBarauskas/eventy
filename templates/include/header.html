@@ -1,0 +1,47 @@
+{% load static %}
+<header>
+  <nav class="navbar navbar-light" style="background-color: lightskyblue">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'events:index' %}">
+        <img src="{% static 'img/logo.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+        Eventy
+      </a>
+      {% with request.resolver_match.view_name as view_name %}
+        <ul class="nav  nav-pills">
+          <li class="nav-item">
+            <a class="nav-link {% if view_name == 'events:categories' %} text-white {% endif %}" href="{% url 'events:categories' %}">
+              Категории
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if view_name == 'events:locations' %} text-white {% endif %}" href="{% url 'events:locations' %}">
+              Локации
+            </a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link {% if view_name == 'events:people' %} text-white {% endif %}" href="{% url 'events:people' %}">
+              Участники
+            </a>
+          </li>
+          {% if user.is_authenticated %}
+            <div class="btn-group" role="group" aria-label="Basic outlined example">
+              <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none text-reset"
+                  href="{% url 'events:index' %}">Добавить событие</a></button>
+              <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none text-reset"
+                  href="{% url 'events:index' %}">Добавить событие в город</a></button>
+              <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none text-reset"
+                  href="{% url 'events:index' %}">Выйти</a></button>
+            </div>
+          {% else %}
+            <div class="btn-group" role="group" aria-label="Basic outlined example">
+              <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none text-reset"
+                  href="{% url 'events:index' %}">Войти</a></button>
+              <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none text-reset"
+                  href="{% url 'events:index' %}">Регистрация</a></button>
+            </div>
+          {% endif %}
+        </ul>
+      {% endwith %}
+    </div>
+  </nav>
+</header>

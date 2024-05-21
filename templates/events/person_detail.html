@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ person.full_name }}
+{% endblock %}
+
+{% block header %}
+    {{ person.full_name }}
+{% endblock %}
+
+{% block content %}
+    <article>
+        <h2>{{ person.description }}</h2>
+        <h4>Даты и места проведения</h4>
+        <ul>
+            {% for event in person.events.all %}
+                {% for place in event.places.all %}
+                    <div>
+                        <h5>
+                            {{ place.date }} - {{ place.time }}. Цена: {{ place.price }} руб. <a href="">Купить билет</a>
+                        </h5>
+                        <p>
+                            Город: {{ place.location.city }}<br>
+                            Адрес: {{ place.location.address }}<br>
+                            Площадка: {{ place.location.name }}
+                        </p>
+                        <p>
+                            Мест всего: {{ place.location.capacity }}<br>
+                            Мест свободно: В РАЗРАБОТКЕ
+                        </p>
+                    </div>
+                    <hr>
+                {% endfor %}
+            {% endfor %}
+
+    </article>
+{% endblock %}

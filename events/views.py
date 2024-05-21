@@ -1,20 +1,33 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
-from .database import DB
+from .models import Event, Category, Person, Location
 
 
 def index(request):
-    events = DB.get('events', [])
-    return render(request, 'index.html', {'events': events})
+    events = Event.objects.all()
+    return render(request, 'events/index.html', {'events': events})
 
 
 def event_detail(request, event_id):
-    event = next((
-        event for event in DB.get('events', [])
-        if event.get('id') == event_id
-    ), None)
-    if not event:
-        return HttpResponse('Event not found', status=404)
+    event = get_object_or_404(Event, pk=event_id)
+    return render(request, 'events/event_detail.html', {'event': event})
 
-    return render(request, 'event_detail.html', {'event': event})
+
+def get_categories(request):
+    categories = Category.objects.all()
+    return render(request, 'events/categories.html', {'categories': categories})
+
+
+def get_locations(request):
+    locations = Location.objects.all()
+    return render(request, 'events/locations.html', {'locations': locations})
+
+
+def get_people(request):
+    people = Person.objects.all()
+    return render(request, 'events/people.html', {'people': people})
+
+
+def person_detail(request, person_id):
+    person = get_object_or_404(Person, pk=person_id)
+    return render(request, 'events/person_detail.html', {'person': person})
