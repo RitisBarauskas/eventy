@@ -11,7 +11,9 @@
 {% block content %}
     <ul>
         {% for person in people %}
-            <li><a href="{% url 'events:person_detail' person.id %}">{{ person.full_name }}</a></li> (КОЛИЧЕСТВО СОБЫТИЙ)
+            <li><a href="{% url 'events:person_detail' person.id %}">{{ person.full_name }}</a>
+                (Всего событий: {{ person.events.count }},
+                количество возможных дат: {{ person.events_count }})</li>
         {% endfor %}
     </ul>
 

@@ -26,7 +26,7 @@
           {% if user.is_authenticated %}
             <div class="btn-group" role="group" aria-label="Basic outlined example">
               <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none text-reset"
-                  href="{% url 'events:index' %}">Добавить событие</a></button>
+                  href="{% url 'events:create_event' %}">Добавить событие</a></button>
               <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none text-reset"
                   href="{% url 'events:index' %}">Добавить событие в город</a></button>
               <button type="button" class="btn btn-outline-primary"><a class="text-decoration-none text-reset"

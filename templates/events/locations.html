@@ -11,7 +11,7 @@
 {% block content %}
     <ul>
         {% for location in locations %}
-            <li><a href="">{{ location.name }}</a></li> (КОЛИЧЕСТВО СОБЫТИЙ)
+            <li><a href="">{{ location.name }}</a> (Всего событий: {{ location.events.count }})</li>
         {% endfor %}
     </ul>
 

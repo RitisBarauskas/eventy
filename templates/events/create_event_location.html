@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Привязать событие к месту
+{% endblock %}
+
+{% block header %}
+    Привязать событие к месту
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'events:create_event_location' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Добавить</button>
+    </form>
+{% endblock %}
