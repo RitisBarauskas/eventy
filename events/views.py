@@ -50,6 +50,12 @@ class CreateEvent(CreateView):
     def get_success_url(self):
         return reverse_lazy('events:event_detail', kwargs={'event_id': self.object.id})
 
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
+
 
 class CreateEventLocation(CreateView):
     model = EventLocation
