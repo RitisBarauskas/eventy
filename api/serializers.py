@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 import settings
+from users.models import Profile
 from events.models import Person, Category, Event, Location, EventLocation
 
 
@@ -62,3 +63,9 @@ class EventLocationWriteSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         return EventLocationReadSerializer(instance).data
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        exclude = ('id',)
