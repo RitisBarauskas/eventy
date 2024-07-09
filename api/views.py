@@ -1,7 +1,9 @@
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 
 from events.models import Person, Category, Event, Location, EventLocation
 from users.models import Profile
+from .permissions import IsAuthorOrModeratorOrReadOnly
 from .serializers import (
     PersonSerializer,
     CategorySerializer,
@@ -10,6 +12,7 @@ from .serializers import (
     EventWriteSerializer,
     EventLocationReadSerializer,
     EventLocationWriteSerializer,
+    ProfileSerializer,
 )
 
 
@@ -48,4 +51,5 @@ class EventLocationViewSet(viewsets.ModelViewSet):
 
 class ProfileViewSet(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
+    permission_classes = [IsAuthenticated, IsAuthorOrModeratorOrReadOnly]
     serializer_class = ProfileSerializer
