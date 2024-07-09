@@ -51,5 +51,7 @@ class EventLocationViewSet(viewsets.ModelViewSet):
 
 class ProfileViewSet(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
+    filter_backends = []
+    search_fields = ['user__username']
     permission_classes = [IsAuthenticated, IsAuthorOrModeratorOrReadOnly]
     serializer_class = ProfileSerializer
