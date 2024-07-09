@@ -3,6 +3,7 @@ from rest_framework import viewsets
 from events.models import Person, Category, Event, Location, EventLocation
 from users.models import Profile
 from .serializers import (
+    ProfileSerializer,
     PersonSerializer,
     CategorySerializer,
     LocationSerializer,
@@ -48,4 +49,6 @@ class EventLocationViewSet(viewsets.ModelViewSet):
 
 class ProfileViewSet(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
+    filter_backends = []
+    search_fields = ['user__username']
     serializer_class = ProfileSerializer
